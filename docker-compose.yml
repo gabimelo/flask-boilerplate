@@ -3,8 +3,8 @@ services:
   app:
     build: .
     ports:
-     - "5000:5000"
+     - "5000:80"
     volumes:
-     - .:/app
+     - .:/project
   db:
     image: "mongo"
