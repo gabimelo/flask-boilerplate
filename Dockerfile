@@ -20,7 +20,7 @@ COPY flask-site-nginx.conf /etc/nginx/conf.d/
 COPY uwsgi.ini /etc/uwsgi/
 COPY supervisord.conf /etc/
 
-COPY /app /project
+COPY app /project/app
 
 WORKDIR /project
 
