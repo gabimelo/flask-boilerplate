@@ -14,20 +14,19 @@ docker-compose up
 * install Python 3
 * install `pip`
 * run `pip install -r requirements.txt`
-* run `FLASK_APP=app.py flask run` to start the server (or `python -u app.py`)
-* change the lines
-```
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
-```
-to simply:
-```app.run(debug=True)```
-
-and 
+* run `FLASK_APP=app.py flask run` to start the server (or `python app.py`)
+* change the line:
 ```
 client = MongoClient('mongodb://db:27017/')
 ```
-to 
+to wherever your Mongo DB is running (`localhost` for instance)
 ```
 client = MongoClient('mongodb://localhost:27017/')
+```
+
+You can test the endpoints with:
+```bash
+curl localhost:5000  # Hello World
+curl localhost:5000/users  # Retrieves all users
+curl --data "name=John Doe"  localhost:5000/users  # Adds new "John Doe" user
 ```
