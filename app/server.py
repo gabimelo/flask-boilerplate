@@ -4,7 +4,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 client = MongoClient('mongodb://db:27017/', connect=False)
-# client = MongoClient('mongodb://localhost:27017/')
+# client = MongoClient('mongodb://localhost:27017/', connect=False)
 db = client.test_database
 
 
@@ -31,5 +31,4 @@ def users_route():
 
 
 if __name__ == "__main__":
-    # app.run(host="localhost", debug=True)
     app.run(host="0.0.0.0", debug=True)
