@@ -18,7 +18,7 @@ RUN rm -r /root/.cache
 COPY nginx.conf /etc/nginx/
 COPY flask-site-nginx.conf /etc/nginx/conf.d/
 COPY uwsgi.ini /etc/uwsgi/
-COPY supervisord.conf /etc/
+COPY supervisord.conf /etc/supervisor/
 
 COPY /app /project
 
