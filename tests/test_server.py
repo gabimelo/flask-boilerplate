@@ -1,17 +1,9 @@
-import unittest
-
-from src.server import app
-
-
-class AppTestCase(unittest.TestCase):
-    def setUp(self):
-        app.testing = True
-        self.app = app.test_client()
-
-    def test_hello_world(self):
-        res = self.app.get('/')
-        self.assertEqual(res.status_code, 200)
-        self.assertIn('Hello World!', str(res.data))
+class TestServer():
+    @staticmethod
+    def test_ping(test_client):
+        response = test_client.get('/ping')
+        assert response.status_code == 200
+        assert b'pong' in response.data
 
     # TODO need to mock db to be able to run tests below
     # def test_get_users(self):
@@ -28,7 +20,3 @@ class AppTestCase(unittest.TestCase):
     #     res = self.app.get('/users')
     #     self.assertEqual(res.status_code, 200)
     #     self.assertIn('John Doe', str(res.data))
-
-
-if __name__ == "__main__":
-    unittest.main()

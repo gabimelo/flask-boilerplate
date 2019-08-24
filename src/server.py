@@ -8,9 +8,9 @@ client = MongoClient('mongodb://db:27017/', connect=False)
 db = client.test_database
 
 
-@app.route("/")
-def hello():
-    return "Hello World!"
+@app.route("/ping")
+def ping():
+    return "pong"
 
 
 # to check DB connection:
