@@ -5,18 +5,20 @@ class TestServer():
         assert response.status_code == 200
         assert b'pong' in response.data
 
-    # TODO need to mock db to be able to run tests below
-    # def test_get_users(self):
-    #     res = self.app.get('/users')
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertIn('Hello World!', str(res.data))
+    def test_get_users(self, test_client):
+        response = test_client.get('/users')
+        assert response.status_code == 200
+        assert response.json['status'] == 'success'
+        assert response.json['payload'] == []
 
-    # def test_post_users(self):
-    #     res = self.app.post('/users', data=dict(name='John Doe'))
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertIn('success', str(res.data))
+    # def test_post_user(self, test_client):
+    #     response = test_client.post('/users', data=dict(name='John Doe'))
+    #     assert response.status_code == 200
+    #     assert response.json['status'] == 'success'
+    #     assert response.json['payload'] == []
 
-    # def test_get_users_after_post(self):
-    #     res = self.app.get('/users')
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertIn('John Doe', str(res.data))
+    def test_get_users_after_post(self, test_client):
+        response = test_client.get('/users')
+        assert response.status_code == 200
+        assert response.json['status'] == 'success'
+        assert response.json['payload'] == ['John Doe']
