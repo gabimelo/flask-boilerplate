@@ -15,10 +15,10 @@ RUN useradd --no-create-home nginx
 RUN rm /etc/nginx/sites-enabled/default
 RUN rm -r /root/.cache
 
-COPY nginx.conf /etc/nginx/
-COPY flask-site-nginx.conf /etc/nginx/conf.d/
-COPY uwsgi.ini /etc/uwsgi/
-COPY supervisord.conf /etc/supervisor/
+COPY server-conf/nginx.conf /etc/nginx/
+COPY server-conf/flask-site-nginx.conf /etc/nginx/conf.d/
+COPY server-conf/uwsgi.ini /etc/uwsgi/
+COPY server-conf/supervisord.conf /etc/supervisor/
 
 COPY app /project/app
 
