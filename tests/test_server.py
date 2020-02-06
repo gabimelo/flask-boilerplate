@@ -27,3 +27,17 @@ class TestServer():
         assert response.status_code == 200
         assert response.json['status'] == 'success'
         assert response.json['payload'] == ['John Doe']
+
+    def test_post_user_missing_data(self, test_client, test_get_db):
+        with patch('src.server.get_db', test_get_db):
+            response = test_client.post('/users')
+        assert response.status_code == 400
+        assert response.json['status'] == 'failed'
+        assert response.json['payload'] == 'Please insert a name'
+
+    def test_post_user_db_exception(self, test_client, test_get_db):
+        with patch('src.server.get_db', side_effect=Exception):
+            response = test_client.post('/users', data=dict(name='John Doe'))
+        assert response.status_code == 500
+        assert response.json['status'] == 'failed'
+        assert response.json['payload'] == 'An internal server error happened. Please try again later'

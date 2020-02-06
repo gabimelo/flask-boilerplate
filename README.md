@@ -13,7 +13,7 @@ docker-compose up --build -d
 
 You can test the endpoints with:
 ```bash
-curl localhost:5000  # Hello World
+curl localhost:5000/ping  # pong
 curl localhost:5000/users  # Retrieves all users
 curl --data "name=John Doe"  localhost:5000/users  # Adds new "John Doe" user
 ```

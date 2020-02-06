@@ -3,7 +3,7 @@ services:
   app:
     build: .
     ports:
-     - "5000:80"
+     - "5010:80"
     volumes:
      - .:/project
     depends_on:
