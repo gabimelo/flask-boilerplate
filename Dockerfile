@@ -1,4 +1,4 @@
-FROM python:3.5
+FROM python:3.6
 
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
@@ -21,6 +21,7 @@ COPY server-conf/uwsgi.ini /etc/uwsgi/
 COPY server-conf/supervisord.conf /etc/supervisor/
 
 COPY src /project/src
+COPY ./wsgi.py /project/src/
 
 WORKDIR /project
 

@@ -4,9 +4,3 @@ services:
     build: .
     ports:
      - "5010:80"
-    volumes:
-     - .:/project
-    depends_on:
-     - db
-  db:
-    image: "mongo"
