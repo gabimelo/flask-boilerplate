@@ -32,7 +32,7 @@ def users_route():
             return jsonify({"status": "success", "payload": str(user_id)}), 200
     except Exception:
         return (
-            jsonify({"status": "failed", "payload": "An internal server error happened. Please try again later"}), 
+            jsonify({"status": "failed", "payload": "An internal server error happened. Please try again later"}),
             500
         )
 

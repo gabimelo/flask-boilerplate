@@ -1,0 +1,13 @@
+#!/bin/sh
+pdb_check=$(grep -Enr '[ ;]i?pdb' src)
+if [ ${#pdb_check} -gt 0 ]
+then
+    echo 'COMMIT REJECTED: delete pdb calls before committing'
+    exit 1
+fi
+echo "\nAppearances of TODO in code:\n"
+grep -nr '\(#\| \)TODO*' src
+echo "\nAppearances of TODO in tests:\n"
+grep -nr '\(#\| \)TODO*' tests
+echo "\nFlake8 errors:\n"
+python3 -m  flake8 .

@@ -1,0 +1,24 @@
+version: '3'
+services:
+  lint:
+    build: .
+    volumes:
+     - .:/project
+    command: bash -c "flake8 . || exit 1"
+  unit_test:
+    build: .
+    volumes:
+      - .:/project
+    command: bash -c "python -m pytest --cov-report term-missing --cov=src tests/unit || exit 1"
+  integration_test:
+    build: .
+    volumes:
+     - .:/project
+    depends_on:
+     - db
+    command: bash -c "./wait-for-it.sh db:27018 -- python -m pytest --cov-report term-missing --cov=src tests/integration"
+  db:
+    image: "mongo"
+    command: mongod --port 27018
+    ports:
+      - '27018:27018'
